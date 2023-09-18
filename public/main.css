@@ -206,8 +206,8 @@
     .homebutton {
     width: 50px;
     position: absolute;
-    top: 8px;
-    left: 10%;
+    top: 15px;
+    left: 15px;
     z-index: 100;
   }
     

@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react'
-import { fetchFlash } from '../../api/flash'
 import Loader from './Loader'
 import GoBack from './GoBack'
 
@@ -8,14 +7,8 @@ export default function FlashContainer() {
   const [loading, setLoading] = useState(true)
   const [backArrow, setBackArrow] = useState(false)
 
-  const allImages = document.getElementsByTagName('img')
-  const images = [...allImages]
-
-  useMemo(async () => {
-    const getFlash = await fetchFlash()
-    const reverseFlash = getFlash.images.reverse()
-
-    setFlash(reverseFlash)
+  useMemo(() => {
+    setFlash(JSON.parse(localStorage.getItem('flash-images')))
 
     setTimeout(() => {
       setLoading(false)
@@ -27,8 +20,12 @@ export default function FlashContainer() {
     const getContainer = document.getElementsByClassName('imageContainer')
     const container = [...getContainer]
 
+    const allImages = document.getElementsByClassName('flashImage')
+    const images = [...allImages]
+
     container[0].style.display = 'flex'
     container[0].style.flexDirection = 'column'
+
     for (let i = 0; i < images.length; i++) {
       const image = images[i]
       if (image.id) {
@@ -38,11 +35,9 @@ export default function FlashContainer() {
         image.style.position = 'relative'
       }
     }
-    const foundImage = images.find((x) => {
-      return x.id === e.target.id
-    })
-    foundImage.scrollIntoView({ block: 'center' })
+    
     setBackArrow(true)
+    return images[e.target.id].scrollIntoView({block: 'center'})
   }
   return (
     <>
@@ -52,13 +47,13 @@ export default function FlashContainer() {
         ) : (
           <>
             {backArrow ? <GoBack setBackArrow={setBackArrow} /> : null}
-            {flash.map((x) => (
+            {flash.map((x, i) => (
               <img
-                src=""
+                src={x.image}
                 alt="flashImage"
                 className="flashImage"
-                id={x.id}
-                key={x.id}
+                id={i}
+                key={i}
                 onClick={onClick}
               />
             ))}

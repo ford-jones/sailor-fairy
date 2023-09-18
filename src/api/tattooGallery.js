@@ -1,41 +1,42 @@
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
-require('dotenv').config()
+// const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
+// require('dotenv').config()
+// import * as mongoDb from 'mongodb'
 
-const usr = process.env.MONGODB_USERNAME
-const pw = process.env.MONGODB_PW
-const database = process.env.MONGODB_TATTOO_DB
-const cltn = process.env.MONGODB_TATTOO_CLN
+// const usr = process.env.REACT_APP_MONGODB_USERNAME
+// const pw = process.env.REACT_APP_MONGODB_PW
+// const database = process.env.REACT_APP_MONGODB_TATTOO_DB
+// const cltn = process.env.REACT_APP_MONGODB_TATTOO_CLN
 
-const uri = `mongodb+srv://${usr}:${pw}@sailorfairy.gtdlrmi.mongodb.net/?retryWrites=true&w=majority`
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 })
+// const uri = `mongodb+srv://${usr}:${pw}@sailorfairy.gtdlrmi.mongodb.net/?retryWrites=true&w=majority`
+// const client = new mongoDb.MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: mongoDb.ServerApiVersion.v1 })
 
-async function getGallery() {
-        let dataArr = []
+// export async function fetchGallery() {
+//         let dataArr = []
         
-        const collection = client.db(database).collection(cltn).find()
-        await collection.forEach((data) => {
-            return dataArr.push(data)
-        })
+//         const collection = client.db(database).collection(cltn).find()
+//         await collection.forEach((data) => {
+//             return dataArr.push(data)
+//         })
 
-    return dataArr
+//     return dataArr
     
-}
+// }
 
-function postTattoo(data) {
-    return client.db(database).collection(cltn).insertOne(data)
-}
+// export function postTattoo(data) {
+//     return client.db(database).collection(cltn).insertOne(data)
+// }
 
-async function deleteTattoo(data) {
-    try {
-        const deletion = await client.db(database).collection(cltn).deleteOne({_id: ObjectId(data._id)})
-        return deletion
-    } catch (err) {
-        console.log(err.message)
-    }
-}
+// export async function deleteTattoo(data) {
+//     try {
+//         const deletion = await client.db(database).collection(cltn).deleteOne({_id: mongoDb.ObjectId(data._id)})
+//         return deletion
+//     } catch (err) {
+//         console.log(err.message)
+//     }
+// }
 
-module.exports = {
-    getGallery,
-    postTattoo,
-    deleteTattoo
-}
+// module.exports = {
+//     fetchGallery,
+//     postTattoo,
+//     deleteTattoo
+// }

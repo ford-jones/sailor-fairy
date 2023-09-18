@@ -36,9 +36,9 @@ export default function BookingForm() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    const serviceId = process.env.SERVICE_ID
-    const templateId = process.env.TEMPLATE_ID
-    const apiKey = process.env.EMAILJS_API_KEY
+    const serviceId = process.env.REACT_APP_SERVICE_ID
+    const templateId = process.env.REACT_APP_TEMPLATE_ID
+    const apiKey = process.env.REACT_APP_EMAILJS_API_KEY
 
     if (
       (bookingForm.first_name != '' &&

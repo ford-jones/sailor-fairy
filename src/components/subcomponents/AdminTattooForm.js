@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { fetchGallery, postTattoo } from "../../api/tattooGallery"
-import { postTattooImage } from "../../api/tattooImages"
+// import { postTattooImage } from "../../api/tattooImages"
 import AdminUploadPopup from "./AdminUploadPopup"
 import AdminDelTattooPopup from "./AdminDelTattooPopup"
 import UploadFailure from "./UploadFailure";
@@ -64,7 +64,6 @@ export default function AdminTattooForm() {
                 setFailPopup(false)
             }, 4000)
         } else {
-            postTattooImage(imageForm)
             postTattoo(textForm)
             handleImage(e)
             setPopup(true)

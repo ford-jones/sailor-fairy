@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { fetchFlash, postFlash } from '../../api/flash'
-import { postFlashImage } from '../../api/flashImages'
+// import { postFlashImage } from '../../api/flashImages'
 import AdminDelFlashPopup from './AdminDelFlashPopup'
 import AdminUploadPopup from './AdminUploadPopup'
 import UploadFailure from './UploadFailure'
@@ -69,7 +69,7 @@ export default function AdminFlashForm() {
         setFailPopup(false)
       }, 4000)
     } else {
-      postFlashImage(imageForm)
+      // postFlashImage(imageForm)
       postFlash(textForm)
       handleImage(e)
       setPopup(true)
